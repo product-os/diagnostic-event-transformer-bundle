@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import type {
 	ExternalEventContract,
 	DiagnosticEventContractDefinition,
+	GlitchTipPayload,
 } from './types';
 
 export async function externalevent2diagnosticevent(
@@ -14,7 +15,8 @@ export async function externalevent2diagnosticevent(
 	}
 
 	const type = 'diagnostic-event';
-	for (const attachment of input.input.contract.data.payload.attachments) {
+	const payload = input.input.contract.data.payload as GlitchTipPayload;
+	for (const attachment of payload.attachments) {
 		results.push({
 			contract: {
 				handle: uuidv4(),
@@ -25,6 +27,13 @@ export async function externalevent2diagnosticevent(
 					level: attachment.title.match(/\slevel=(\w+)\s/)[1],
 					source: attachment['title_link'],
 					timestamp: attachment.title.match(/time="([^\s]+)"\s/)[1],
+					project: attachment.fields.find((field) => field.title === 'Project')
+						.value,
+					environment: attachment.fields.find(
+						(field) => field.title === 'Environment',
+					).value,
+					release: attachment.fields.find((field) => field.title === 'Release')
+						.value,
 				},
 			},
 		});
