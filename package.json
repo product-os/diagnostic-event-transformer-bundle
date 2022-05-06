@@ -1,7 +1,7 @@
 {
   "name": "diagnostic-event-transformer-bundle",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
     "ts-jest": "^27.1.4"
   },
   "versionist": {
-    "publishedAt": "2022-05-05T07:05:09.075Z"
+    "publishedAt": "2022-05-06T00:32:14.543Z"
   }
 }
