@@ -22,6 +22,9 @@ data:
       - message
       - source
       - timestamp
+      - project
+      - environment
+      - release
     properties:
       level:
         type: string
@@ -32,6 +35,12 @@ data:
       timestamp: 
         type: string
         format: date-time
+      project:
+        type: string
+      environment:
+        type: string
+      release:
+        type: string
 ---
 handle: external-event-2-diagnostic-event
 type: transformer

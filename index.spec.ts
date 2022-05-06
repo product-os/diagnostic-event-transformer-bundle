@@ -90,5 +90,8 @@ describe('Diagnostic event life-cycle', function () {
 		expect(result[0].contract.data.message).toBe(
 			'shim balena-engine-containerd-shim started" ad…',
 		);
+		expect(result[0].contract.data.project).toBe('logwatcher');
+		expect(result[0].contract.data.environment).toBe('production');
+		expect(result[0].contract.data.release).toBe('1.0.0');
 	});
 });
