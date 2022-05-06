@@ -1,0 +1,57 @@
+handle: external-event
+type: type
+data:
+  schema:
+    type: object
+    required: 
+      - payload
+      - source
+    properties:
+      payload:
+        type: object
+      source:
+        type: string
+---
+handle: diagnostic-event
+type: type
+data:
+  schema:
+    type: object
+    required:
+      - level
+      - message
+      - source
+      - timestamp
+    properties:
+      level:
+        type: string
+      message:
+        type: string
+      source:
+        type: string
+      timestamp: 
+        type: string
+        format: date-time
+---
+handle: external-event-2-diagnostic-event
+type: transformer
+data:
+  input:
+    $ref: external-event
+    filter:
+      type: object
+      required:
+        - type
+        - data
+      properties:
+        type:
+          const: external-event
+        data:
+          type: object
+          required:
+            - source
+          properties:
+            source:
+              const: glitchtip
+  output:
+    $ref: diagnostic-event
