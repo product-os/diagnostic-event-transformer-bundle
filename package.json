@@ -22,5 +22,8 @@
     "@types/uuid": "^8.3.4",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4"
+  },
+  "versionist": {
+    "publishedAt": "2022-05-05T07:05:09.075Z"
   }
 }
